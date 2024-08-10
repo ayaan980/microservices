@@ -33,4 +33,6 @@ public class HotelController {
         return ResponseEntity.status(HttpStatus.OK).body(hotelService.getAll());
     }
     //dummy
+    //new dummy
+
 }
