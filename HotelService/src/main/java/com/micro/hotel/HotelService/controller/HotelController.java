@@ -32,4 +32,5 @@ public class HotelController {
     public ResponseEntity<List<Hotel>> getAllHotel(){
         return ResponseEntity.status(HttpStatus.OK).body(hotelService.getAll());
     }
+    //dummy
 }
