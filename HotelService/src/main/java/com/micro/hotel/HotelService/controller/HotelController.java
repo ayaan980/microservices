@@ -19,17 +19,17 @@ public class HotelController {
     private HotelService hotelService;
 
     @PostMapping
-    public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel){
-       return ResponseEntity.status(HttpStatus.CREATED).body(hotelService.create(hotel));
+    public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(hotelService.create(hotel));
     }
 
-   @GetMapping("/{hotelId}")
-   public ResponseEntity<Hotel> getHotel(@PathVariable String hotelId){
+    @GetMapping("/{hotelId}")
+    public ResponseEntity<Hotel> getHotel(@PathVariable String hotelId) {
         return ResponseEntity.status(HttpStatus.OK).body(hotelService.get(hotelId));
     }
 
     @GetMapping
-    public ResponseEntity<List<Hotel>> getAllHotel(){
+    public ResponseEntity<List<Hotel>> getAllHotel() {
         return ResponseEntity.status(HttpStatus.OK).body(hotelService.getAll());
     }
     //dummy
