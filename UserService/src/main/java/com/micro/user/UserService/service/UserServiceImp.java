@@ -28,7 +28,7 @@ public class UserServiceImp implements UserService{
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
+ @Autowired
     private HotelService hotelService;
 
    private Logger logger=  LoggerFactory.getLogger(UserServiceImp.class);
@@ -55,10 +55,10 @@ public class UserServiceImp implements UserService{
         Rating[] ratings = restTemplate.getForObject("http://RATINGSERVICE/ratings/user/"+user.getUserId(),Rating[].class );
         logger.info("{} ",ratings);
         //We got all the Ratings given by the user
-        List<Rating> ratings1 = Arrays.stream(ratings).collect(Collectors.toList());
+        List<Rating> ratings1 = Arrays.stream(ratings).toList();
         //now we will itterate the ratings and fetch the hotel ID as well from the Hotel service
-        List<Object> listOfHotel = ratings1.stream().map(rating -> {
-            //ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://HOTELSERVICE/hotels/"+rating.getHotelId(), Hotel.class);
+       List<Rating> listOfRatings = ratings1.stream().map(rating -> {
+           // ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://HOTELSERVICE/hotels/"+rating.getHotelId(), Hotel.class);
             //api get call to hotelservice to get hotel
             Hotel hotel =hotelService.getHotel(rating.getHotelId());
             rating.setHotel(hotel);
@@ -68,7 +68,7 @@ public class UserServiceImp implements UserService{
 
         }).collect(Collectors.toList());
 
-        user.setRatings(ratings1);
+        user.setRatings(listOfRatings);
         return user;
         //fetch rating for above user from RATING SERVICE
     }
