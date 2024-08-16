@@ -28,7 +28,7 @@ public class UserServiceImp implements UserService{
     @Autowired
     private RestTemplate restTemplate;
 
- @Autowired
+    @Autowired
     private HotelService hotelService;
 
    private Logger logger=  LoggerFactory.getLogger(UserServiceImp.class);
